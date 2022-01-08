@@ -28,5 +28,19 @@ function generatePassword(){
     alert ("Invalid choice, Please try again");
     return;
   }
-  console.log(passwordLength)
+
+  let smallChar = confirm('Do you want any lowercase characters in your password (a-z)');
+  let largeChar = confirm('Do you want any uppercase characters in your password (A-Z)');
+  let number = confirm('Do you want any numbers in your password (0-9)');
+  let special = confirm('Do you want any special characters in your password (!@#$%^&*()_+-={}|[]:"<>?;,./`~)');
+
+  if (smallChar == true){
+    allowedChar += smLetter
+  }
+
+
+  for (let i=0; i<passwordLength; i++){
+    confirmPassword += allowedChar[Math.floor(Math.random () * allowedChar.length)]
+  }
+  return confirmPassword
 }
