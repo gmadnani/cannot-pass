@@ -23,24 +23,32 @@ function generatePassword(){
   let confirmPassword = ''
 
   var passwordLength = prompt("Select number of characters you would like your password to be. \nMust be between 8 - 128 characters.");
+  console.log(passwordLength)
+  if(passwordLength != null){
+    if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)){
+      alert ("Invalid choice, Please select the number of characters between 8 - 128");
+      return '';
+    } 
 
-  if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength) || passwordLength == 0){
-    alert ("Invalid choice, Please try again");
-    return;
+    let smallChar = confirm('Do you want any lowercase characters in your password (a-z)');
+    let largeChar = confirm('Do you want any uppercase characters in your password (A-Z)');
+    let number = confirm('Do you want any numbers in your password (0-9)');
+    let special = confirm('Do you want any special characters in your password (!@#$%^&*()_+-={}|[]:"<>?;,./`~)');
+
+    if (smallChar == true){
+      allowedChar += smLetter
+    }
+
+    if (smallChar == false){
+      alert ("Please select at least one character type");
+      return '';
+    }
+
+
+    for (let i=0; i<passwordLength; i++){
+      confirmPassword += allowedChar[Math.floor(Math.random () * allowedChar.length)]
+    }
+    return confirmPassword
   }
-
-  let smallChar = confirm('Do you want any lowercase characters in your password (a-z)');
-  let largeChar = confirm('Do you want any uppercase characters in your password (A-Z)');
-  let number = confirm('Do you want any numbers in your password (0-9)');
-  let special = confirm('Do you want any special characters in your password (!@#$%^&*()_+-={}|[]:"<>?;,./`~)');
-
-  if (smallChar == true){
-    allowedChar += smLetter
-  }
-
-
-  for (let i=0; i<passwordLength; i++){
-    confirmPassword += allowedChar[Math.floor(Math.random () * allowedChar.length)]
-  }
-  return confirmPassword
+  return ''
 }
