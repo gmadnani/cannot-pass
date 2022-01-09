@@ -50,9 +50,7 @@ function generatePassword(){
       allowedChar += specialChar
     }
 
-    console.log(allowedChar);
-
-    if (smallChar == false && largeChar == false && number == false && specialChar == false){
+    if (smallChar == false && largeChar == false && number == false && special == false){
       alert ("Please select at least one character type");
       return '';
     }
